@@ -13,6 +13,7 @@ umask 022 # set
 # umask -S u=rwx,g=rx,o=rx
 
 # See https://github.com/robbyrussell/oh-my-zsh/wiki/Themes
+ZSH_THEME="robbyrussell"
 # ZSH_THEME="agnoster"
 
 # Uncomment the following line to use hyphen-insensitive completion. Case
