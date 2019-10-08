@@ -1,0 +1,6 @@
+#!/usr/bin/env ruby
+pattern = ARGV[0] || ["*.mp4", "*.m4v", "*.mkv"]
+
+Dir[*pattern].each do |file|
+  system "subtitle_extract \"#{file}\""
+end

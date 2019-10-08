@@ -1,0 +1,26 @@
+#!/usr/bin/env ruby
+
+GRADE_HASH = { 
+  '6' => 0, '5-' => 1, '5' => 2, '5+' => 3,
+  '4-' => 4, '4' => 5, '4+' => 6,
+  '3-' => 7, '3' => 8, '3+' => 9,
+  '2-' => 10, '2' => 11, '2+' => 12,
+  '1-' => 13, '1' => 14, '1+' => 15,
+}
+
+POINT_HASH = GRADE_HASH.invert
+
+def grade2points(g)
+  GRADE_HASH[g]
+end
+
+def points2grade(p)
+  POINT_HASH[p]
+end
+
+if ARGV.empty?
+  puts "Usage: #{File.basename $0} <points> <points> <points> ... <points>"
+else
+  avg = ARGV.inject(0) { |sum, p| sum += p.to_f } / ARGV.size
+  puts "Mittelwert: %1.1f => %i Punkte (%s)" % [avg, avg.round, points2grade(avg.round)]
+end

@@ -1,0 +1,8 @@
+.*~
+.DS_Store
+Icon?
+nohup.out
+tmp
+bin/code
+bin/code-insiders
+bin/MP4Box.exe

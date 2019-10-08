@@ -1,0 +1,111 @@
+#!/usr/bin/env ruby
+
+# Needs:
+# https://github.com/ruediger/VobSub2SRT
+# brew install --all-languages tesseract
+# brew install --HEAD https://github.com/ruediger/VobSub2SRT/raw/master/packaging/vobsub2srt.rb
+# sudo apt install mediainfo mkvtoolnix
+# sudo apt install tesseract-ocr tesseract-ocr-deu tesseract-ocr-fra tesseract-ocr-eng
+# java -jar ~/Applications/BDSup2Sub.jar TheCollector.de.sup TheCollector.de.sub /res:keep /lang:de
+REGEXP_MP4 = /TrackID (\d+) - TimeScale \d+ - Media Duration.+?\n(Track is disabled\n)?Media Info: Language "([^"]+)" - Type "subp:mp4s"/
+REGEXP_MKV = /mkvextract: (\d+)\)\n\|  \+ Track UID: \d\n\|  \+ Track type: subtitles.+?Language: (\w+)/m
+BDSUP2SUB = 'D:\MKData\OneDrive - Marienschule Opladen\AppData\Windows\BDSup2Sub.jar'
+
+def extract_mp4(filename, extname)
+  print "Finding subtitles... "
+  output = `MP4Box -info "#{filename}#{extname}" 2>&1`
+
+  subtitle_info = output.scan( REGEXP_MP4 )
+
+  unless subtitle_info.size > 0
+    puts "ERROR: No subtitle tracks found. Exiting."
+    exit 1
+  end
+
+  subtitle_info.each do |subtitle|
+    number = subtitle[0]
+    language = subtitle[2][/\((\w+)\)/i][1..2]
+
+    print "Extracting VobSub #{number} #{language}... "
+    `MP4Box -raw #{number} "#{filename}#{extname}" &>/dev/null`
+
+    print "Extracting SRT... "
+    `vobsub2srt "#{filename}_track#{number}" &>/dev/null`
+
+    # Cleaning up
+    unless File.exist? "#{filename}.#{language}.srt"
+      File.rename "#{filename}_track#{number}.srt", "#{filename}.#{language}.srt"
+    else
+      File.rename "#{filename}_track#{number}.srt", "#{filename}.#{language}#{number}.srt"
+    end
+
+    File.delete "#{filename}_track#{number}.idx"
+    File.delete "#{filename}_track#{number}.sub"
+  end
+end
+
+def extract_mkv(filename, extname)
+  print "Finding subtitles... "
+  output = `mkvinfo "#{filename}#{extname}" 2>&1`
+
+  subtitle_info = output.scan( REGEXP_MKV )
+
+  unless subtitle_info.size > 0
+    puts "ERROR: No subtitle tracks found. Exiting."
+    exit 1
+  end
+
+  subtitle_info.each do |subtitle|
+    number   = subtitle[0]
+    language = subtitle[1][0..1]
+    output_filename = "#{filename}.#{language}#{number}"
+    print "Extracting PGS #{language}... "
+    cmd = "mkvextract tracks \"#{filename}#{extname}\" #{number}:\"#{output_filename}.sup\""
+    # puts cmd
+    result = `#{cmd}`
+
+    unless $?.exitstatus == 0
+      puts "ERROR: #{result}"
+      exit 1
+    end
+
+    print "Converting to SUB... "
+    `java.exe -jar "#{BDSUP2SUB}" --resolution keep --language #{language} --output "#{output_filename}.sub" "#{output_filename}.sup"`
+
+    print "Extracting SRT... "
+    `vobsub2srt "#{output_filename}" &>/dev/null`
+
+    # Cleaning up
+    File.delete "#{output_filename}.idx"
+    File.delete "#{output_filename}.sub"
+    File.delete "#{output_filename}.sup"
+  end
+end
+
+# ================
+# = Main Program =
+# ================
+fullname = ARGV[0]
+# EXTENSION = '.mp4'
+
+puts "MrK's Subtitle Extractor\n\n"
+puts "Working on #{fullname}... "
+
+unless File.exist?( fullname )
+  puts "ERROR: File not found. Exiting."
+  exit 1
+end
+
+extname  = File.extname(fullname).downcase
+filename = File.basename(fullname, extname)
+
+if extname == '.mp4' || extname == '.m4v'
+  extract_mp4(filename, extname)
+elsif extname == '.mkv'
+  extract_mkv(filename, extname)
+else
+  puts "ERROR: Unknown extension #{extname}. Exiting."
+  exit 1
+end
+
+puts "Finnnisss!!!"

@@ -1,0 +1,34 @@
+# =============
+# = Functions =
+# =============
+
+# returns first part of filename
+function purename() {
+  ruby -e "puts '$1'[/^[\S]+(?=\.)/] || '$1'"
+}
+
+# returns extension filename without dot
+function extension() {
+  ruby -e "puts '$1'[/\..+$/] || ''"
+}
+
+# adds mod_date in ISO format to filename
+function datetag() {
+  mod_date=`stat -f "%Sm" -t "%Y-%m-%d" $1`
+  mv $1 `purename $1`-$mod_date`extension $1`
+}
+
+# adds mod_date in ISO format to filename
+function bk() {
+  mod_date=`stat -f "%Sm" -t "%Y-%m-%d" $1`
+  cp "$1" "`purename $1`-$mod_date`extension $1`.bk"
+}
+
+function i()   # Get current host related info.
+{
+    echo -e "\nYou are logged on ${RED}$HOSTNAME$NORMAL:"
+    echo -e "\nAdditionnal information:$NC " ; uname -a
+    echo -e "\n${RED}Current date:$NC " ; date
+    echo -e "\n${RED}Machine stats:$NC " ; uptime
+    echo
+}

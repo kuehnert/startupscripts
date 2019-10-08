@@ -1,0 +1,4 @@
+#!/usr/bin/env ruby
+Dir.glob("*.zip").each do |file|
+  puts `unzip -tq #{ARGV.join} #{file}`
+end

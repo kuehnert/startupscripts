@@ -1,0 +1,7 @@
+export RAILS_ENV=production
+
+alias mso="cd /Library/MSOServer"
+alias dps="cd /Library/MSOServer/DeployStudio"
+alias mun="cd /Library/MSOServer/Munki"
+alias srv="cd /Library/Server"
+alias web="cd /Library/Server/Web/Data"

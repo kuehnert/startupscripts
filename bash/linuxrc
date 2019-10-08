@@ -1,0 +1,11 @@
+export PATH=~/bin:$HOME/.rbenv/bin:$HOME/.rbenv/plugins/ruby-build/bin:/usr/local/bin:/usr/local/sbin:$PATH
+export RAILS_ENV=production
+eval "$(rbenv init -)"
+
+alias god_start="sudo service god start"
+alias god_status="sudo service god status"
+alias god_stop="sudo service god stop"
+alias mso="cd /var/www/msoreloaded/current"
+alias ng="cd /etc/nginx/sites-available/"
+alias restart_nginx="sudo service nginx restart"
+alias www="cd /var/www/"

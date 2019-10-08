@@ -1,0 +1,5 @@
+#!/usr/bin/env ruby
+`gem list --no-version`.split.each do |g|
+  puts "Uninstall gem #{g}: "
+  system("gem uninstall -aIx #{g}")
+end

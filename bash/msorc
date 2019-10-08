@@ -1,0 +1,4 @@
+alias zeu="ssh -C -t mk@zeus /usr/local/bin/tmux attach"
+alias neu="ssh -C -t mksadmin@neumann /usr/local/bin/tmux attach"
+alias tur="ssh -C -t mksadmin@turing /usr/local/bin/tmux attach"
+alias web="cd /Library/Server/Web"

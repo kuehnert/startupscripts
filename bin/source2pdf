@@ -1,0 +1,46 @@
+#!/usr/bin/env ruby -wKU
+# encoding: UTF-8
+require "fileutils"
+
+puts "Converting files..."
+Dir.glob(['*.txt', '*.java', '*.rb']).each do |file|
+  print "Working on #{file}... "
+  temp   = File.basename(file, '.*') + '.latin1'
+  output = File.basename(file, '.*') + '.pdf'
+  text   = File.read(file)
+  text   = text.strip.gsub(/\n{3,}/, "\n\n")
+
+  unless text.valid_encoding?
+    print "konvertiere... "
+    text = text.force_encoding('MacRoman').encode('utf-8')
+    File.open(file, "w") { |io| io.write text }
+  end
+
+  unless text.valid_encoding?
+    puts "Kein gültige Codierung. Überspringe."
+    next
+  end
+  
+  text.gsub!("…", "...")
+  File.open(temp, "w") { |io| io.write text.encode('ISO-8859-1') }
+  
+  result = `enscript --margins=:110:: -p - --word-wrap --media=A4 --tabsize=4 --encoding latin1 -f Courier10 --indent=0 #{temp} 2>/dev/null | pstopdf -i -o #{output}`
+  
+  if $?.success?
+    File.delete temp
+    
+    # print "printing... "
+    # `lpr -P mcx_2 "#{output}"`
+    # `open "#{output}"`
+    puts "done."
+  else
+    puts "Error: #{result}"
+  end
+end
+  
+puts "Joining PDFs..."
+files = Dir.glob('*.pdf')
+`gs -q -dNOPAUSE -dBATCH -sDEVICE=pdfwrite -sOutputFile=output.pdf #{files.join(' ')}`
+
+FileUtils.rm files if $?.success?
+puts "Finished."

@@ -1,0 +1,16 @@
+#!/usr/bin/env ruby
+require 'csv'
+
+keys = ["Nr.","Nachname","Vorname","Geschlecht","Belegung","Telefon","Alter","Geburtstag","E-Mail"]
+input = CSV.read(ARGV[0]).map {|a| Hash[ keys.zip(a) ] }
+# input = CSV.read(ARGV[0], headers: true)
+# input.shift
+
+output = []
+input.each do |s|
+  output << [ s["Vorname"], s["Nachname"], "Leverkusen", s['Geburtstag'], s["E-Mail"], s["Telefon"] ]
+end
+
+CSV.open("TStudio#{ARGV[0]}", "wb") do |csv|
+  output.each { |s| csv << s }
+end

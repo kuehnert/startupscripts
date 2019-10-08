@@ -1,0 +1,24 @@
+#!/usr/bin/env ruby
+
+BREW = '/usr/local/bin/brew'
+
+if File.exist?(BREW)
+  print "Updating homebrew... "
+  result = `#{BREW} update`
+
+  if $?.success?
+    puts "OK."
+  else
+    puts "ERROR: \n" + result
+  end
+
+  print "Upgrading homebrew bottles... "
+  result = `#{BREW} upgrade 2>&1`
+
+  if $?.success?
+    puts "OK."
+  else
+    puts "ERROR:"
+  end
+  puts result unless result.chomp == ""
+end

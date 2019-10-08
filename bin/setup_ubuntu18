@@ -1,0 +1,35 @@
+#!/bin/bash -
+# Call with:
+# source <(curl -L -s l.mso.onl/u18)
+# source <(curl -s https://gist.githubusercontent.com/kuehnert/093163cbe0fcf6c82d736f872bbe33f0/raw)
+# curl -fsSL -H 'Cache-Control: no-cache' https://gist.githubusercontent.com/kuehnert/093163cbe0fcf6c82d736f872bbe33f0/raw | bash
+clear
+printf "###################################################################\n"
+printf "#              Setup Script for Ubuntu Server 18.04 #             #\n"
+printf "###################################################################\n"
+export PATH="$HOME/.rbenv/bin:$PATH"
+
+# printf "\n\n######## Updating system..."
+# sudo apt -y update
+# sudo apt -y full-upgrade
+printf "\n\n######## Installing needed packages..."
+sudo apt -y install postgresql redis-server autoconf bison build-essential libssl-dev libyaml-dev libreadline6-dev zlib1g-dev libncurses5-dev libffi-dev libgdbm5 libgdbm-dev libpq-dev zsh
+
+printf "\n\n######## Setting up firewall...\n"
+# sudo ufw app list
+# sudo ufw allow OpenSSH
+# sudo ufw enable
+# sudo ufw status
+
+printf "\n\n######## Setup rbenv for user $USER...\n"
+# git clone https://github.com/sstephenson/rbenv.git ~/.rbenv
+# mkdir -p ~/.rbenv/plugins/ruby-build
+# git clone https://github.com/sstephenson/ruby-build.git ~/.rbenv/plugins/ruby-build
+~/.rbenv/bin/rbenv init
+printf 'export PATH="$HOME/.rbenv/bin:$PATH"\neval "$(rbenv init -)"\n' >> ~/.bash_profile
+rbenv install 2.5.5
+rbenv global 2.5.5
+
+mkdir ~/GITProjects
+cd ~/GITProjects
+git clone git@github.com:kuehnert/startupscripts.git

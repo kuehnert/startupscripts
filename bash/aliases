@@ -1,0 +1,32 @@
+alias beep="tput bel"
+alias dc="docker-compose.exe"
+alias ec='echo $@'
+alias f="find . -iname $1 2>/dev/null"
+alias grep='grep --color'
+alias gri="grep --ignore-case"
+alias grir="grep --ignore-case --recursive"
+alias h="history"
+alias l="ls -ahl"
+alias ls="ls -FG --color"
+alias md='mkdir -p'
+alias csta='cd /mnt/c/Users/mk/GITProjects/startupscripts && code . && cd -'
+alias o="less"
+alias psa='ps aux'
+alias psg='ps auxww | grep --ignore-case --color'
+alias rd='rmdir'
+alias reload='. ~/.zshrc'
+alias sysupdate='sudo apt -y update && sudo apt -y upgrade && sudo apt -y autoremove'
+alias t='tmux attach'
+
+alias dep='bundle exec cap production deploy'
+alias mig="bundle exec rake db:migrate"
+alias r="bundle exec rails"
+alias rc="bundle exec rails console"
+alias rg="bundle exec rails generate"
+alias rk="bundle exec rake"
+alias rs="bundle exec rails server"
+
+alias smso="ssh mk@marienschule-opladen.com"
+
+alias varmso="cd /var/www/msoreloaded/current"
+alias vartra="cd /var/www/tracking/current"

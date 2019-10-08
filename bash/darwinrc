@@ -1,0 +1,23 @@
+alias ardrestart="sudo /System/Library/CoreServices/RemoteManagement/ARDAgent.app/Contents/Resources/kickstart -restart -agent -console"
+alias flushdns='sudo killall -HUP mDNSResponder'
+alias install_brew='ruby -e "$(curl -fsSkL raw.github.com/mxcl/homebrew/go)"'
+alias m='mate'
+alias top="top -o cpu"
+
+# Paths
+alias la="cd /Library/LaunchAgents"
+alias ld="cd /Library/LaunchDaemons"
+alias ~la='cd ~/Library/LaunchAgents'
+
+# set Mac volume
+function volume () { osascript -e "set volume output volume $@" 2>/dev/null; }
+
+function remove_license_from_dmg () {
+  hdiutil convert -format UDTO $1 -o $(purename $1)
+  mv $1 $1.bk
+  hdiutil convert -format UDRO $(purename $1).cdr -o $1
+}
+
+function ip() {
+  networksetup -getinfo Ethernet | ruby -e "puts STDIN.read[/(?<=IP address: ).+/]"
+}
