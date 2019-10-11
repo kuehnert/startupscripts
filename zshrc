@@ -44,20 +44,21 @@ zplug "plugins/git",   from:oh-my-zsh
 zplug "plugins/git-flow",   from:oh-my-zsh
 zplug "plugins/rbenv",   from:oh-my-zsh
 zplug "plugins/ruby",   from:oh-my-zsh
-# zplug "plugins/capistrano",   from:oh-my-zsh
 zplug "zsh-users/zsh-history-substring-search"
 zplug "zsh-users/zsh-completions"
-zplug mafredri/zsh-async, from:github
-zplug sindresorhus/pure, use:pure.zsh, from:github, as:theme
+# zplug mafredri/zsh-async, from:github
+# zplug "plugins/capistrano",   from:oh-my-zsh
+# zplug sindresorhus/pure, use:pure.zsh, from:github, as:theme
 # zplug "zsh-users/zsh-syntax-highlighting", defer:2
 # zplug "mattberther/zsh-pyenv"
+zplug romkatv/powerlevel10k, as:theme, depth:1
 
-zstyle :prompt:pure:path color 046
-zstyle :prompt:pure:git:branch color 220
-zstyle :prompt:pure:git:arrow color 220
-zstyle :prompt:pure:host color 226
-zstyle :prompt:pure:prompt:success color 226
-zstyle :prompt:pure:prompt:errror color red
+# zstyle :prompt:pure:path color 046
+# zstyle :prompt:pure:git:branch color 220
+# zstyle :prompt:pure:git:arrow color 220
+# zstyle :prompt:pure:host color 226
+# zstyle :prompt:pure:prompt:success color 226
+# zstyle :prompt:pure:prompt:errror color red
 
 # Install plugins if there are plugins that have not been installed
 if ! zplug check --verbose; then
@@ -112,3 +113,6 @@ function c { cd ~/GITProjects/$1; }
 
 bindkey '\e[A' history-beginning-search-backward
 bindkey '\e[B' history-beginning-search-forward
+
+# To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
+[[ -f ~/.p10k.zsh ]] && source ~/.p10k.zsh
