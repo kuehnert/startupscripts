@@ -32,3 +32,8 @@ function i()   # Get current host related info.
     echo -e "\n${RED}Machine stats:$NC " ; uptime
     echo
 }
+
+function apt_installed() # shows manually installed packages
+{
+  comm -23 <(apt-mark showmanual | sort -u) <(gzip -dc /var/log/installer/initial-status.gz | sed -n 's/^Package: //p' | sort -u)
+}

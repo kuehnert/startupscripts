@@ -15,7 +15,7 @@ alias psa='ps aux'
 alias psg='ps auxww | grep --ignore-case --color'
 alias rd='rmdir'
 alias reload='. ~/.zshrc'
-alias sysupdate='sudo apt -y update && sudo apt -y upgrade && sudo apt -y autoremove'
+alias sysupdate='echo "Updating...." && sudo apt -y update && echo "Upgrading...." && sudo apt -y full-upgrade'
 alias t='tmux attach'
 
 alias dep='bundle exec cap production deploy'
