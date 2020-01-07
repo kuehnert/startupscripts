@@ -26,7 +26,9 @@ alias rg="bundle exec rails generate"
 alias rk="bundle exec rake"
 alias rs="bundle exec rails server"
 
-alias smso="ssh mk@marienschule-opladen.com"
+alias smso="ssh mk@marienschule.com"
 
-alias varmso="cd /var/www/msoreloaded/current"
-alias vartra="cd /var/www/tracking/current"
+alias rails_cred_edit="EDITOR=/bin/nano bundle exec rails credentials:edit"
+alias psql_list_users='sudo -u postgres psql -tAc "SELECT 1 FROM pg_roles WHERE rolname=deploy"'
+alias psql_change_deploy_password='sudo -u postgres psql -c "alter user deploy with encrypted password $1;"'
+alias rails_create_db="RAILS_ENV=staging bundle exec rails db:create"
