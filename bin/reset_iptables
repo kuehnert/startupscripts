@@ -13,6 +13,7 @@ if answer.upcase == "E"
   puts `sudo iptables -A INPUT -i lo -j ACCEPT`
   puts `sudo iptables -A INPUT -i eth0 -p icmp -j ACCEPT`
   puts `sudo iptables -A INPUT -i eth0 -p tcp --dport 22 -j ACCEPT`
+  puts `sudo iptables -A INPUT -i eth0 -p tcp --dport 80 -j ACCEPT`
   puts `sudo iptables -A INPUT -m state --state ESTABLISHED,RELATED -j ACCEPT`
   puts `sudo iptables -P FORWARD DROP`
   puts `sudo iptables -P INPUT DROP`
