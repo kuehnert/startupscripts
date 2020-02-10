@@ -32,3 +32,6 @@ alias rails_cred_edit="EDITOR=/bin/nano bundle exec rails credentials:edit"
 alias psql_list_users='sudo -u postgres psql -tAc "SELECT 1 FROM pg_roles WHERE rolname=deploy"'
 alias psql_change_deploy_password='sudo -u postgres psql -c "alter user deploy with encrypted password $1;"'
 alias rails_create_db="RAILS_ENV=staging bundle exec rails db:create"
+
+alias sob="cd ~/GITProjects/JavaScript/Sokrates/sokrates-backend && code . && npm start"
+alias sow="cd ~/GITProjects/JavaScript/Sokrates/sokrates-webapp && code . && npm start"
