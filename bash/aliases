@@ -14,7 +14,7 @@ alias o="less"
 alias psa='ps aux'
 alias psg='ps auxww | grep --ignore-case --color'
 alias rd='rmdir'
-alias reload='. ~/.zshrc'
+alias refreshenv='. ~/.zshrc'
 alias sysupdate='echo "Updating...." && sudo apt -y update && echo "Upgrading...." && sudo apt -y full-upgrade'
 alias t='tmux attach'
 
@@ -35,3 +35,5 @@ alias rails_create_db="RAILS_ENV=staging bundle exec rails db:create"
 
 alias sob="cd ~/GITProjects/JavaScript/Sokrates/sokrates-backend && code . && npm start"
 alias sow="cd ~/GITProjects/JavaScript/Sokrates/sokrates-webapp && code . && npm start"
+
+alias exip="dig +short myip.opendns.com @resolver1.opendns.com"
