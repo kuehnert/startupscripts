@@ -4,7 +4,7 @@
 
 export CLICOLOR=1
 export EDITOR="/usr/local/bin/code"
-export LSCOLORS=GxFxCxDxBxegedabagaced
+# export LSCOLORS=GxFxCxDxBxegedabagaced
 export MANPATH=/usr/share/man:/usr/local/share/man:/usr/local/man
 export PATH=~/bin:/usr/local/bin:/usr/local/sbin:$PATH
 
