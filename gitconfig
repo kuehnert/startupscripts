@@ -26,3 +26,5 @@
 	autocrlf = false
 	eol = lf
 	attributesfile = ~/.gitattributes
+[credential]
+	helper = store
