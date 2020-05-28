@@ -1,10 +1,11 @@
+#!/usr/bin/env python3
+# -*- coding: utf-8 -*-
 import click
 import os
 
 files2link = [
     "bash",
     "bashrc",
-    "bin",
     "gemrc",
     "gitattributes",
     "gitconfig",
@@ -28,5 +29,12 @@ for file in files2link:
   cmd = "ln -f -s {} {}".format(source, dest)
   click.secho(cmd)
   os.system(cmd)
+
+click.secho("Linking bin folder...")
+source = os.path.join(abspath, 'bin')
+dest = os.path.join(os.environ["HOME"], 'bin')
+cmd = "ln -f -s {} {}".format(source, dest)
+click.secho(cmd)
+os.system(cmd)
 
 click.secho("Finiss!")
