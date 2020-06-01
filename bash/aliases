@@ -1,5 +1,5 @@
 alias beep="tput bel"
-alias dc="docker-compose.exe"
+alias code='/mnt/c/Program\ Files/Microsoft\ VS\ Code/bin/code'
 alias ec='echo $@'
 alias f="find . -iname $1 2>/dev/null"
 alias grep='grep --color'
@@ -9,7 +9,7 @@ alias h="history"
 alias l="ls -ahl"
 alias ls="ls -FG --color"
 alias md='mkdir -p'
-alias csta='cd /mnt/c/Users/mk/GITProjects/startupscripts && code . && cd -'
+alias csta='cd ~/GITProjects/startupscripts && code . && cd -'
 alias o="less"
 alias psa='ps aux'
 alias psg='ps auxww | grep --ignore-case --color'
