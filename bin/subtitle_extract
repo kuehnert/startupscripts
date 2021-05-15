@@ -1,13 +1,12 @@
 #!/usr/bin/env ruby
 
 # Needs:
-# https://github.com/ruediger/VobSub2SRT
+# https://github.com/kuehnert/VobSub2SRT
 # brew install --all-languages tesseract
 # brew install --HEAD https://github.com/ruediger/VobSub2SRT/raw/master/packaging/vobsub2srt.rb
-# sudo apt install mediainfo mkvtoolnix
-# sudo apt install tesseract-ocr tesseract-ocr-deu tesseract-ocr-fra tesseract-ocr-eng
+# sudo apt install gpac mediainfo mkvtoolnix tesseract-ocr tesseract-ocr-deu tesseract-ocr-fra tesseract-ocr-eng
 # java -jar ~/Applications/BDSup2Sub.jar TheCollector.de.sup TheCollector.de.sub /res:keep /lang:de
-REGEXP_MP4 = /TrackID (\d+) - TimeScale \d+ - Media Duration.+?\n(Track is disabled\n)?Media Info: Language "([^"]+)" - Type "subp:mp4s"/
+REGEXP_MP4 = /TrackID (\d+) - TimeScale \d+ - Media Duration.+\n(Track is disabled\n)?(Track has .+\n)?Media Info: Language "([^"]+)" - Type "subp:mp4s"/
 REGEXP_MKV = /mkvextract: (\d+)\)\n\|  \+ Track UID: \d\n\|  \+ Track type: subtitles.+?Language: (\w+)/m
 BDSUP2SUB = 'D:\MKData\OneDrive - Marienschule Opladen\AppData\Windows\BDSup2Sub.jar'
 
@@ -22,9 +21,11 @@ def extract_mp4(filename, extname)
     exit 1
   end
 
+  puts "Result:\n#{subtitle_info}"
+
   subtitle_info.each do |subtitle|
     number = subtitle[0]
-    language = subtitle[2][/\((\w+)\)/i][1..2]
+    language = subtitle[3][/\((\w+)\)/i][1..2]
 
     print "Extracting VobSub #{number} #{language}... "
     `MP4Box -raw #{number} "#{filename}#{extname}" &>/dev/null`
@@ -39,8 +40,8 @@ def extract_mp4(filename, extname)
       File.rename "#{filename}_track#{number}.srt", "#{filename}.#{language}#{number}.srt"
     end
 
-    File.delete "#{filename}_track#{number}.idx"
-    File.delete "#{filename}_track#{number}.sub"
+    # File.delete "#{filename}_track#{number}.idx"
+    # File.delete "#{filename}_track#{number}.sub"
   end
 end
 

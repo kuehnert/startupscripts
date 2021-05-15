@@ -1,0 +1,23 @@
+#!/usr/bin/env python3
+import sys
+import shutil
+from click import echo, secho, style
+import os
+
+file = sys.argv[1]
+target = f"/mnt/videos/{os.path.basename(file)}"
+echo("--> Moving " + style(file, fg='yellow') + " to " +
+     style(target, fg="bright_yellow") + " ...", nl=False)
+
+if (os.path.isfile(target)):
+    secho(" error: target already exists", fg='bright_red', bold=True, err=True)
+    sys.exit(1)
+
+try:
+    shutil.copyfile(file, target)
+    os.remove(file)
+except IOError:
+    secho(" error copying file", fg='bright_red', bold=True, err=True)
+    sys.exit(1)
+
+secho(" done.")
