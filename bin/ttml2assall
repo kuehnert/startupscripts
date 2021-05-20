@@ -1,0 +1,4 @@
+#!/usr/bin/env bash
+echo "Converting all TTML files into ASS"
+find . -type f -name "*.ttml" -exec ttml2ass {} \;
+echo "All finished."

@@ -1,0 +1,13 @@
+# https://askubuntu.com/questions/1127055/install-mongodb-shell-client-without-server
+
+# Import the public key used to sign packages from MongoDB, Inc
+sudo apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv 9DA31620334BD75D9DCB49F368818C72E52529D4
+
+# Create a package list file for MongoDB
+echo "deb [ arch=amd64 ] https://repo.mongodb.org/apt/ubuntu bionic/mongodb-org/4.0 multiverse" | sudo tee /etc/apt/sources.list.d/mongodb-org-4.0.list
+
+# Update your local package database
+sudo apt-get update
+
+# Install the desired MongoDB package(s)
+sudo apt-get install -y mongodb-org-shell

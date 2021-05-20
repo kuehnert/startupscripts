@@ -1,0 +1,17 @@
+{
+  "name": "startupscripts",
+  "version": "0.1.0",
+  "description": "Node scripts within Mr K's startup scripts",
+  "scripts": {},
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/kuehnert/startupscripts.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/kuehnert/startupscripts/issues"
+  },
+  "homepage": "https://github.com/kuehnert/startupscripts#readme"
+}
