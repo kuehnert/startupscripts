@@ -13,5 +13,8 @@
   "bugs": {
     "url": "https://github.com/kuehnert/startupscripts/issues"
   },
-  "homepage": "https://github.com/kuehnert/startupscripts#readme"
+  "homepage": "https://github.com/kuehnert/startupscripts#readme",
+  "dependencies": {
+    "fast-xml-parser": "^3.19.0"
+  }
 }
