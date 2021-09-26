@@ -1,5 +1,5 @@
 alias beep="tput bel"
-alias code='/mnt/c/Program\ Files/Microsoft\ VS\ Code/bin/code'
+alias code='/mnt/c/Users/matth/AppData/Local/Programs/Microsoft\ VS\ Code/Code.exe'
 alias ec='echo $@'
 alias f="find . -iname $1 2>/dev/null"
 alias grep='grep --color'
