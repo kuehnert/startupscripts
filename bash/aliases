@@ -1,5 +1,5 @@
 alias beep="tput bel"
-alias code='/mnt/c/Users/matth/AppData/Local/Programs/Microsoft\ VS\ Code/Code.exe'
+alias code='/mnt/c/Users/matth/AppData/Local/Programs/Microsoft\ VS\ Code/bin/code'
 alias ec='echo $@'
 alias f="find . -iname $1 2>/dev/null"
 alias grep='grep --color'
@@ -40,4 +40,4 @@ alias bbcw="cd ~/GITProjects/bbcloader/frontend && code . && npm start"
 alias msob="cd ~/GITProjects/MSO/Reloaded && code . && bin/dev"
 alias msow="cd ~/GITProjects/MSO/Revolutions && code . && npm start"
 
-alias exip="dig +short myip.opendns.com @resolver1.opendns.com"
+alias extip="dig +short myip.opendns.com @resolver1.opendns.com"
