@@ -43,4 +43,4 @@ alias bbcw="cd ~/GITProjects/bbcloader/frontend && code . && npm start"
 alias msob="cd ~/GITProjects/MSO/Reloaded && code . && bin/dev"
 alias msow="cd ~/GITProjects/MSO/Revolutions && code . && npm start"
 
-alias extip="dig +short myip.opendns.com @resolver1.opendns.com"
+alias exip="dig +short myip.opendns.com @resolver1.opendns.com"
