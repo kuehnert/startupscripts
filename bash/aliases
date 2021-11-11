@@ -1,5 +1,5 @@
 alias beep="tput bel"
-alias code='/mnt/c/Users/matth/AppData/Local/Programs/Microsoft\ VS\ Code/Code.exe'
+alias code='/mnt/c/Users/matth/AppData/Local/Programs/Microsoft\ VS\ Code/bin/code'
 alias ec='echo $@'
 alias f="find . -iname $1 2>/dev/null"
 alias grep='grep --color'
@@ -27,12 +27,15 @@ alias rk="bundle exec rake"
 alias rs="bundle exec rails server"
 
 alias smso="ssh mk@marienschule.com"
+alias msorc="sudo -u deploy -i sh -c \"cd /home/deploy/sites/msoreloaded/current && RAILS_ENV=production bundle exec rails console\""
 
 alias rails_cred_edit="EDITOR=/bin/nano bundle exec rails credentials:edit"
 alias psql_list_users='sudo -u postgres psql -tAc "SELECT 1 FROM pg_roles WHERE rolname=deploy"'
 alias psql_change_deploy_password='sudo -u postgres psql -c "alter user deploy with encrypted password $1;"'
 alias rails_create_db="RAILS_ENV=staging bundle exec rails db:create"
 
+alias kab="cd ~/GITProjects/kakuro/backend && code . && npm start"
+alias kaw="cd ~/GITProjects/kakuro/webapp && code . && npm start"
 alias sob="cd ~/GITProjects/JavaScript/Sokrates/sokrates-backend && code . && npm start"
 alias sow="cd ~/GITProjects/JavaScript/Sokrates/sokrates-webapp && code . && npm start"
 alias bbcb="cd ~/GITProjects/bbcloader/backend && code . && npm start"
