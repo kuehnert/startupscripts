@@ -71,7 +71,7 @@ def extract_mkv(filename, extname)
     end
 
     print "Converting to SUB... "
-    `java.exe -jar "#{BDSUP2SUB}" --resolution keep --language #{language} --output "#{output_filename}.sub" "#{output_filename}.sup"`
+    `/mnt/c/Users/matth/.jdks/openjdk-17.0.1/bin/java.exe -jar "#{BDSUP2SUB}" --resolution keep --language #{language} --output "#{output_filename}.sub" "#{output_filename}.sup"`
 
     print "Extracting SRT... "
     `vobsub2srt "#{output_filename}" &>/dev/null`
