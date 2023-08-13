@@ -28,3 +28,5 @@
 	attributesfile = ~/.gitattributes
 [credential]
 	helper = store
+[init]
+	defaultBranch = main
