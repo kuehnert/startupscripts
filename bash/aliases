@@ -1,4 +1,5 @@
 alias beep="tput bel"
+alias cat="batcat"
 alias code='/mnt/c/Users/matth/AppData/Local/Programs/Microsoft\ VS\ Code/bin/code'
 alias ec='echo $@'
 alias f="find . -iname $1 2>/dev/null"

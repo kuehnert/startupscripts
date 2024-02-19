@@ -2,6 +2,8 @@
 # necessary to ensure sftp works
 [ -z "$PS1" ] && return
 
+echo "bashrc"
+
 export CLICOLOR=1
 export EDITOR="/usr/local/bin/code"
 # export LSCOLORS=GxFxCxDxBxegedabagaced
